@@ -21,13 +21,15 @@ To use CSFLE with Mongoid, you must have the following:
    ```shell
    bundle install
    ```
-   Please `libmongocrypt-helper` gem builds the library from sources, so you need to have `cmake` installed. 
+   Please note that `libmongocrypt-helper` gem builds the library from sources, so you need to have `cmake` installed.
    If you want to avoid building the library, you can download a pre-built version following [these instructions](https://www.mongodb.com/docs/manual/core/csfle/reference/libmongocrypt/).
    If you decide to do so, you will need to set the `LIBMONGOCRYPT_PATH` environment variable to the path where you downloaded the library:
     
     ```shell
     export LIBMONGOCRYPT_PATH=<path to libmongocrypt>
     ```
+
+    In this case also remove gem `libmongocrypt-helper` from the `Gemfile`.
 
 3. Export the following environment variables :
 
