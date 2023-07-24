@@ -23,6 +23,11 @@ development:
             local:
               key: <%= ENV['LOCAL_MASTER_KEY'] %>
           extra_options:
+            # This app assumes that crypt shared library is located in the vendor/crypt_shared directory.
+            # You can download the library from here:
+            # https://www.mongodb.com/try/download/enterprise
+            # Please adjust the file path accordingly to your operating system
+            # (.so for Linux, .dylib for macOS, .dll for Windows)
             crypt_shared_lib_path: <%= File.join(Rails.root, 'vendor', 'crypt_shared', 'mongo_crypt_v1.so')  %>
 
   options:

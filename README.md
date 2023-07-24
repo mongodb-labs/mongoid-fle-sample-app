@@ -11,7 +11,7 @@ To use CSFLE with Mongoid, you must have the following:
 * A MongoDB Atlas cluster running MongoDB 4.2 or later.
 * MongoDB Ruby driver 2.13.0 or later.
 * Mongoid 9.0.0 or later. This version is not released yet, so you must use the master branch of the Mongoid repository.
-* The crypt_shared library. It can be downloaded from the [MongoDB Download Center](https://www.mongodb.com/try/download/enterprise).
+* The crypt_shared library. It can be downloaded from the [MongoDB Download Center](https://www.mongodb.com/try/download/enterprise). Store the library file in vendor/crypt_shared directory.
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ To use CSFLE with Mongoid, you must have the following:
    bundle install
    ```
    Please `libmongocrypt-helper` gem builds the library from sources, so you need to have `cmake` installed. 
-   If you want to avoid building the library, you can download a pre-built version followin [these instructions](https://www.mongodb.com/docs/manual/core/csfle/reference/libmongocrypt/).
+   If you want to avoid building the library, you can download a pre-built version following [these instructions](https://www.mongodb.com/docs/manual/core/csfle/reference/libmongocrypt/).
    If you decide to do so, you will need to set the `LIBMONGOCRYPT_PATH` environment variable to the path where you downloaded the library:
     
     ```shell
