@@ -1,0 +1,22 @@
+<div class="container my-3 text-center">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Key Id</th>
+      <th scope="col">Key Alt Names</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @keys.each do |key| %>
+      <tr>
+        <td><%= key.user_email %></td>
+        <td><%= key.key_id.to_uuid %></td>
+        <td><%= key.key_alt_names.join(', ') %></td>
+        <td><%= link_to "Delete", admin_key_path(key), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,37 @@
+<div class="container my-5 text-center">
+  <% @bank_accounts.each do |bank_account| %>
+    <div class="row">
+      <div class="col text-left">
+        <p>Account Name: <%= bank_account.name %></p>
+        <p>Account Number: <%= bank_account.account_number %></p>
+        <p>Account Type: <%= bank_account.account_type %></p>
+        <p>Bank Name: <%= bank_account.bank_name %></p>
+        <% if bank_account.transactions.empty? %>
+          <h4>No transactions</h4>
+        <% else %>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Description</th>
+              <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% bank_account.transactions.each_with_index do |transaction, idx| %>
+              <tr>
+                <th scope="row"><%= idx + 1 %></th>
+                <td><%= transaction.displayable_amount %></td>
+                <td><%= transaction.description %></td>
+                <td><%= transaction.completed_at.strftime('%B %d, %Y') %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

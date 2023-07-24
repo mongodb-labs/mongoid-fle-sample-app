@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <h2 >New Transaction</h2>
+
+
+      <%= form_with(model: @transaction) do |form| %>
+        <% if @transaction.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+            <ul>
+              <% @transaction.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label :bank_account, style: "display: block" %>
+          <%= form.collection_select :bank_account_id, @bank_accounts, :id, :name, {}, { class: 'form-control' } %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :amount, style: "display: block" %>
+          <%= form.text_field :amount, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description, style: "display: block" %>
+          <%= form.text_field :description, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :completed_at, style: "display: block" %>
+          <%= form.datetime_field :completed_at, value: @transaction.completed_at.strftime("%Y-%m-%dT%H:%M"), class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.submit 'Create', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

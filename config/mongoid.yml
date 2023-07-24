@@ -1,0 +1,30 @@
+development:
+  clients:
+    # This is an unencrypted client, which is used to demonstrate that the data is encrypted
+    unencrypted:
+      uri: <%= ENV['ATLAS_URI'] %>/finance_lock_development?retryWrites=true&w=majority
+
+    # This client is used to obtain the encryption keys from the key vault.
+    # In this example app we use the same cluster for the sake of simplicity
+    # However, in a real app you may want to consider using a different deployment.
+    key_vault:
+      uri: <%= ENV['ATLAS_URI'] %>/?retryWrites=true&w=majority
+
+    # This is the client that is used to encrypt and decrypt data.
+    default:
+      uri: <%= ENV['ATLAS_URI'] %>/finance_lock_development?retryWrites=true&w=majority
+      options:
+        # You can read about auto encryption options here:
+        # https://www.mongodb.com/docs/ruby-driver/v2.19/reference/in-use-encryption/client-side-encryption/#auto-encryption-options
+        auto_encryption_options:
+          key_vault_client: 'key_vault'
+          key_vault_namespace: 'encryption.__keyVault'
+          kms_providers:
+            local:
+              key: <%= ENV['LOCAL_MASTER_KEY'] %>
+          extra_options:
+            crypt_shared_lib_path: <%= File.join(Rails.root, 'vendor', 'crypt_shared', 'mongo_crypt_v1.so')  %>
+
+  options:
+    # This is recommended for auto encryption to work properly in development.
+    preload_models: true
