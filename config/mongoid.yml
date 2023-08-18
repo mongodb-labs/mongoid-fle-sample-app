@@ -26,9 +26,13 @@ development:
             # This app assumes that crypt shared library is located in the vendor/crypt_shared directory.
             # You can download the library from here:
             # https://www.mongodb.com/try/download/enterprise
-            # Please adjust the file path accordingly to your operating system
-            # (.so for Linux, .dylib for macOS, .dll for Windows)
-            crypt_shared_lib_path: <%= File.join(Rails.root, 'vendor', 'crypt_shared', 'mongo_crypt_v1.so')  %>
+            #
+            # The mongocrypt_path_helper method will attempt to fill in the
+            # path to the mongo_crypt_v1.[dll|so|dynlib] based on the detected
+            # environment, however this can manually be set via:
+            #
+            # <%= File.join(Rails.root, 'vendor', 'crypt_shared', "mongo_crypt_v1.<ext>") %>
+            crypt_shared_lib_path: <%= mongocrypt_path_helper  %>
 
   options:
     # This is recommended for auto encryption to work properly in development.
