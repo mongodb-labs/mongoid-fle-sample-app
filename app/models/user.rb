@@ -37,8 +37,8 @@ class User
   private
 
   def generate_data_key
-    generate_encryption_key_name
-    EncryptionConfig.client_encryption.create_data_key(self.class.kms_providers.keys.first, key_alt_names: [encryption_key_name])
+    generate_encryption_key_name    
+    EncryptionConfig.client_encryption.create_data_key(EncryptionConfig.kms_providers.keys.first, key_alt_names: [encryption_key_name])
   end
 
   # Generate encryption key name.
