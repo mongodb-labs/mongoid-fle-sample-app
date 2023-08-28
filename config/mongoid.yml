@@ -2,17 +2,17 @@ development:
   clients:
     # This is an unencrypted client, which is used to demonstrate that the data is encrypted
     unencrypted:
-      uri: <%= ENV['ATLAS_URI'] %>/finance_lock_development?retryWrites=true&w=majority
+      uri: <%= ENV['ATLAS_URI'] %>
 
     # This client is used to obtain the encryption keys from the key vault.
     # In this example app we use the same cluster for the sake of simplicity
     # However, in a real app you may want to consider using a different deployment.
     key_vault:
-      uri: <%= ENV['ATLAS_URI'] %>/?retryWrites=true&w=majority
+      uri: <%= ENV['ATLAS_URI'] %>
 
     # This is the client that is used to encrypt and decrypt data.
     default:
-      uri: <%= ENV['ATLAS_URI'] %>/finance_lock_development?retryWrites=true&w=majority
+      uri: <%= ENV['ATLAS_URI'] %>
       options:
         # You can read about auto encryption options here:
         # https://www.mongodb.com/docs/ruby-driver/v2.19/reference/in-use-encryption/client-side-encryption/#auto-encryption-options
